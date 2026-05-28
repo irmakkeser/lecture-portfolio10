@@ -1,0 +1,1575 @@
+/* ==========================================================================
+   IRMAK - DIGITAL DESIGN PORTFOLIO & LECTURE SERIES
+   DESIGN SYSTEM & CUSTOM CORE STYLING
+   Primary Background: #060409 (Vampire Black)
+   Secondary Accent: #768340 (Old Moss Green)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   01. Core Root Variables & Reset
+   -------------------------------------------------------------------------- */
+:root {
+    /* Colors */
+    --color-vampire-black: #060409;
+    --color-old-moss: #768340;
+    --color-old-moss-rgb: 118, 131, 64;
+    --color-moss-light: #94a35d;
+    --color-moss-dark: #4b5329;
+    
+    --color-bg: var(--color-vampire-black);
+    --color-text-primary: #f6f5f8;
+    --color-text-secondary: #a1a0a8;
+    --color-glass-bg: rgba(6, 4, 9, 0.75);
+    --color-glass-border: rgba(118, 131, 64, 0.2);
+    
+    /* Brass/Gold Gradients for Plaques */
+    --brass-gradient: linear-gradient(135deg, 
+        #bf953f 0%, 
+        #fcf6ba 25%, 
+        #b38728 50%, 
+        #fbf5b7 75%, 
+        #aa771c 100%
+    );
+    --brass-dark-gradient: linear-gradient(135deg, 
+        #8a6f27 0%, 
+        #e3c983 25%, 
+        #7d5c1a 50%, 
+        #e7cb86 75%, 
+        #724e0f 100%
+    );
+
+    /* Fonts */
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Inter', sans-serif;
+    
+    /* Layout */
+    --header-height: 80px;
+    --container-max-width: 1200px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; /* Hide default cursor to enable custom luxurious cursor */
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-vampire-black);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-old-moss);
+    border-radius: 4px;
+    border: 2px solid var(--color-vampire-black);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-moss-light);
+}
+
+/* --------------------------------------------------------------------------
+   02. Ambient Background Texture & Glows
+   -------------------------------------------------------------------------- */
+/* Subtle paper/fine-art grain overlay using an SVG data URL */
+.ambient-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Organic background radial light flares in Old Moss Green with detailed breathing animation */
+.ambient-glow {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    pointer-events: none;
+    background: 
+        radial-gradient(circle at 15% 25%, rgba(118, 131, 64, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(118, 131, 64, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(6, 4, 9, 1) 0%, rgba(3, 2, 5, 1) 100%);
+    animation: glowBreathe 18s ease-in-out infinite alternate;
+}
+
+@keyframes glowBreathe {
+    0% {
+        opacity: 0.85;
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1.15;
+        filter: blur(0px);
+    }
+}
+
+/* Subtle digital design line grid overlay */
+.ambient-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.025;
+    background-size: 50px 50px;
+    background-image: 
+        linear-gradient(to right, var(--color-old-moss) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--color-old-moss) 1px, transparent 1px);
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+}
+
+/* --------------------------------------------------------------------------
+   03. Custom Fluid Cursor
+   -------------------------------------------------------------------------- */
+.custom-cursor {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(118, 131, 64, 0.4);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10000;
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-old-moss);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10001;
+    transition: transform 0.1s ease;
+}
+
+/* Hover States for Interactive Elements */
+.custom-cursor.hovering {
+    width: 60px;
+    height: 60px;
+    border-color: var(--color-moss-light);
+    background-color: rgba(118, 131, 64, 0.05);
+}
+
+.custom-cursor-dot.hovering {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: var(--color-moss-light);
+}
+
+/* Hide on Touch Devices */
+@media (hover: none) {
+    .custom-cursor, .custom-cursor-dot {
+        display: none;
+    }
+    * {
+        cursor: auto;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   04. Typography & Utility Elements
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4 {
+    color: var(--color-text-primary);
+}
+
+.accent-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-old-moss);
+}
+
+.section-container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 120px 40px;
+}
+
+.section-header {
+    margin-bottom: 60px;
+}
+
+.section-number {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-old-moss);
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.section-tagline {
+    font-family: var(--font-sans);
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+/* --------------------------------------------------------------------------
+   05. Site Header & Glassmorphic Navigation
+   -------------------------------------------------------------------------- */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    z-index: 100;
+    transition: background-color 0.4s ease, border-bottom-color 0.4s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.site-header.scrolled {
+    background-color: var(--color-glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--color-glass-border);
+}
+
+.header-container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-logo {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-main {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: 0.15em;
+    line-height: 1;
+}
+
+.logo-sub {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: var(--color-old-moss);
+    letter-spacing: 0.3em;
+    margin-top: 3px;
+}
+
+.site-nav {
+    display: block;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 6px 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-old-moss);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-text-primary);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Mobile Nav Toggle */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    width: 25px;
+    z-index: 102;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-text-primary);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Active Mobile Burger */
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Nav Drawer */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-vampire-black);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.mobile-nav.active {
+    right: 0;
+}
+
+.mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+}
+
+.mobile-link {
+    text-decoration: none;
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--color-text-secondary);
+    transition: color 0.3s ease;
+}
+
+.mobile-link:hover {
+    color: var(--color-old-moss);
+}
+
+@media (max-width: 768px) {
+    .site-nav {
+        display: none;
+    }
+    .nav-toggle {
+        display: flex;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   06. Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--header-height);
+    position: relative;
+}
+
+.hero-container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-old-moss);
+    letter-spacing: 0.25em;
+    margin-bottom: 24px;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: 5.5rem;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 40px;
+}
+
+.hero-description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-left: 20px;
+    border-left: 1px solid var(--color-glass-border);
+}
+
+.hero-description {
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+}
+
+.hero-scroll-prompt {
+    margin-top: 10px;
+}
+
+.scroll-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--color-text-primary);
+}
+
+.scroll-text {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.scroll-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--color-old-moss);
+    border-radius: 50%;
+    color: var(--color-old-moss);
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-link:hover .scroll-arrow {
+    background-color: var(--color-old-moss);
+    color: var(--color-vampire-black);
+    transform: translateY(5px);
+}
+
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 4.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 3.2rem;
+    }
+    .hero-description {
+        font-size: 1rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   07. Beveled 3D Dark Oak Wood Frame Component
+   -------------------------------------------------------------------------- */
+.wood-frame {
+    position: relative;
+    border: 18px solid #20140d; /* Thick base wood */
+    /* Create realistic mitered corners and wood depth using CSS border-image */
+    border-image: linear-gradient(135deg, 
+        #2d1a10 0%, 
+        #150a05 40%, 
+        #20140d 60%, 
+        #2d1a10 100%
+    ) 18;
+    outline: 2px solid #0f0703; /* Frame crease shadow crease */
+    box-shadow: 
+        /* Bevel highlights inside the frame wood */
+        inset 1px 1px 0 rgba(255, 255, 255, 0.05),
+        inset -1px -1px 0 rgba(0, 0, 0, 0.4),
+        /* Cast drop shadows */
+        0 15px 35px rgba(0, 0, 0, 0.75),
+        0 30px 60px rgba(0, 0, 0, 0.95);
+    padding: 0;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+    overflow: hidden;
+}
+
+/* Custom Wood Grain Textured Overlay - Textured Oak Grain lines */
+.wood-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.16;
+    background: 
+        repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(255,255,255,0.03) 3px, rgba(255,255,255,0.03) 6px),
+        repeating-linear-gradient(135deg, transparent, transparent 1px, rgba(0,0,0,0.1) 1px, rgba(0,0,0,0.1) 4px),
+        linear-gradient(to right, rgba(0,0,0,0.15), rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.15));
+}
+
+/* The mount board / matting (pass-partout) of the frame in Old Moss Tint */
+.mat-border {
+    background: #d4d8cc; /* Elegant, premium gallery mat tint matching old moss */
+    padding: 30px; /* Size of mat board */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 
+        inset 4px 4px 10px rgba(0, 0, 0, 0.35),
+        inset -2px -2px 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Small academic golden inner fillet outlining the artwork */
+.inner-bevel {
+    padding: 2px;
+    background: var(--brass-gradient);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.artwork-container {
+    position: relative;
+    background-color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Soft shadow on the art from the mat cut */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+}
+
+.gallery-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Specular Glare/Reflective glass highlight */
+.specular-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.9;
+    mix-blend-mode: overlay;
+    background: linear-gradient(110deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.05) 35%, 
+        rgba(255, 255, 255, 0.2) 48%, 
+        rgba(255, 255, 255, 0.25) 50%, 
+        rgba(255, 255, 255, 0.05) 52%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Hover Glare Sweep */
+.gallery-item:hover .specular-glare {
+    transform: translateX(100%);
+}
+
+/* 3D Transform Properties for JavaScript Tilt */
+.gallery-item {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   08. Brushed-Brass Plaque Component
+   -------------------------------------------------------------------------- */
+.brass-plaque {
+    position: relative;
+    margin: 18px auto 0 auto; /* Beautiful floating spacing below frame */
+    width: 100%;
+    background: transparent; /* Remove gold/brass plate */
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    display: block;
+    text-align: center;
+    z-index: 10;
+    transition: transform 0.4s ease;
+}
+
+/* Plaque Content Details - Refined for Prominent White serif text */
+.plaque-content {
+    width: 100%;
+}
+
+.plaque-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.15rem; /* Prominent serif title */
+    font-weight: 400;
+    color: #ffffff; /* Clean bold white */
+    letter-spacing: 0.04em;
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.plaque-content p {
+    font-family: var(--font-sans);
+    font-size: 0.7rem; /* Clean sans-serif subtitle matching typography above */
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-old-moss); /* Secondary Old Moss Green! */
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+/* Tiny metal screw rivets on the sides - disabled as gold plate is removed */
+.plaque-screw {
+    display: none;
+}
+
+/* Hover Plaque Shadows */
+.gallery-item:hover .brass-plaque {
+    box-shadow: 
+        0 10px 22px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   09. Asymmetrical Premium Exhibition Grid
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 80px 40px;
+    padding-top: 40px;
+}
+
+/* Placement rules to create a beautiful, museum-like layout */
+.gallery-item-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Row 1: 3 Column layout */
+.gallery-item-wrapper:nth-child(1) {
+    grid-column: span 2;
+}
+.gallery-item-wrapper:nth-child(2) {
+    grid-column: span 2;
+}
+.gallery-item-wrapper:nth-child(3) {
+    grid-column: span 2;
+}
+
+/* Row 2: 2 Centered Column layout with slightly larger sizes */
+.gallery-item-wrapper:nth-child(4) {
+    grid-column: 1 / span 3;
+    justify-self: right;
+    width: 82%;
+}
+.gallery-item-wrapper:nth-child(5) {
+    grid-column: 4 / span 3;
+    justify-self: left;
+    width: 82%;
+}
+
+/* Sizing of aspect ratio of the frames to fit brand logos elegantly */
+.gallery-item-wrapper .artwork-container {
+    width: 250px;
+    height: 250px;
+}
+
+.gallery-item-wrapper:nth-child(4) .artwork-container,
+.gallery-item-wrapper:nth-child(5) .artwork-container {
+    width: 280px;
+    height: 280px;
+}
+
+@media (max-width: 992px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px 30px;
+    }
+    .gallery-item-wrapper:nth-child(1) { grid-column: span 2; }
+    .gallery-item-wrapper:nth-child(2) { grid-column: span 2; }
+    .gallery-item-wrapper:nth-child(3) { grid-column: span 2; }
+    .gallery-item-wrapper:nth-child(4) { grid-column: 3 / span 2; width: 100%; }
+    .gallery-item-wrapper:nth-child(5) { grid-column: 2 / span 2; width: 100%; }
+    
+    .gallery-item-wrapper .artwork-container {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    .gallery-item-wrapper {
+        grid-column: 1 / -1 !important;
+        justify-self: center !important;
+        width: 100% !important;
+    }
+    .gallery-item-wrapper .artwork-container {
+        width: 260px;
+        height: 260px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   10. Lectures Section & Module Cards
+   -------------------------------------------------------------------------- */
+.lectures-section {
+    background-color: rgba(10, 8, 14, 0.6);
+    border-top: 1px solid var(--color-glass-border);
+    border-bottom: 1px solid var(--color-glass-border);
+}
+
+.lectures-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding-top: 30px;
+}
+
+.lecture-card {
+    position: relative;
+    border-radius: 8px;
+    padding: 1px;
+    background: linear-gradient(180deg, var(--color-glass-border), transparent);
+    overflow: hidden;
+    height: 100%;
+}
+
+.card-inner {
+    background-color: rgba(6, 4, 9, 0.9);
+    border-radius: 7px;
+    padding: 40px 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(118, 131, 64, 0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.lecture-num {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-old-moss);
+    letter-spacing: 0.15em;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.lecture-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.lecture-desc {
+    font-family: var(--font-sans);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.lecture-syllabus {
+    list-style: none;
+    border-top: 1px solid rgba(118, 131, 64, 0.1);
+    padding-top: 20px;
+    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lecture-syllabus li {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--color-text-primary);
+    position: relative;
+    padding-left: 20px;
+    font-weight: 400;
+}
+
+.lecture-syllabus li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: var(--color-old-moss);
+    border-radius: 50%;
+}
+
+.lecture-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 20px;
+}
+
+.read-time {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.download-btn {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-old-moss);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+
+.download-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--color-old-moss);
+    border-radius: 50%;
+    font-size: 0.7rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.download-btn:hover {
+    color: var(--color-moss-light);
+}
+
+.download-btn:hover .download-icon {
+    background-color: var(--color-old-moss);
+    color: var(--color-vampire-black);
+    transform: translateY(2px);
+}
+
+/* Hover States for Cards */
+.lecture-card:hover .card-inner {
+    transform: translateY(-5px);
+}
+
+.lecture-card:hover .card-glow {
+    opacity: 1;
+}
+
+@media (max-width: 992px) {
+    .lectures-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   11. About Section & Credentials
+   -------------------------------------------------------------------------- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 4.5fr 7.5fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-visual {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.portrait-frame {
+    width: 100%;
+    max-width: 380px;
+}
+
+.portrait-container {
+    width: 280px;
+    height: 360px; /* Restore rectangular portrait format */
+    background-color: var(--color-vampire-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Graphic stylized portrait avatar since user doesn't have an image */
+.avatar-graphic {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, #151c10 0%, #060409 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(118, 131, 64, 0.2);
+}
+
+.avatar-circle.outer {
+    width: 180px;
+    height: 180px;
+    animation: spin 30s linear infinite;
+}
+
+.avatar-circle.inner {
+    width: 120px;
+    height: 120px;
+    border-style: solid;
+    border-color: rgba(118, 131, 64, 0.4);
+}
+
+.avatar-initials {
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    font-style: italic;
+    color: var(--color-old-moss);
+    font-weight: 300;
+    z-index: 2;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.about-name {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
+
+.about-title {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-old-moss);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+}
+
+.about-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 45px;
+}
+
+.credentials-box {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(118, 131, 64, 0.2);
+}
+
+.credential-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.cred-year {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-old-moss);
+    letter-spacing: 0.1em;
+}
+
+.cred-text {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+}
+
+@media (max-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    .portrait-frame {
+        max-width: 320px;
+    }
+    .portrait-container {
+        width: 240px;
+        height: 300px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   12. Contact Form & Details
+   -------------------------------------------------------------------------- */
+.contact-layout {
+    display: grid;
+    grid-template-columns: 4.5fr 7.5fr;
+    gap: 80px;
+    align-items: flex-start;
+}
+
+.contact-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.contact-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.channel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.channel-label {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--color-old-moss);
+    letter-spacing: 0.12em;
+}
+
+.channel-value {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a.channel-value:hover {
+    color: var(--color-old-moss);
+}
+
+/* Custom form elements styled in luxury tones */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background-color: rgba(10, 8, 14, 0.4);
+    border: 1px solid var(--color-glass-border);
+    padding: 50px 40px;
+    border-radius: 8px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    background-color: rgba(6, 4, 9, 0.8);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    outline: none;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    border-color: var(--color-old-moss);
+    background-color: rgba(6, 4, 9, 1);
+}
+
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23768340' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.submit-btn {
+    background-color: var(--color-old-moss);
+    border: none;
+    border-radius: 4px;
+    color: var(--color-vampire-black);
+    padding: 14px 28px;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    align-self: flex-start;
+}
+
+.btn-arrow {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--color-moss-light);
+    transform: translateY(-2px);
+}
+
+.submit-btn:hover .btn-arrow {
+    transform: translateX(5px);
+}
+
+@media (max-width: 992px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    .contact-form {
+        padding: 40px 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    .submit-btn {
+        width: 100%;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   13. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 40px 0;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.copyright {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    font-weight: 300;
+}
+
+.footer-meta {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--color-old-moss);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   14. Fullscreen Interactive Lightbox Modal
+   -------------------------------------------------------------------------- */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(3, 2, 4, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Top Right Close Button */
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 1.8rem;
+    color: var(--color-text-secondary);
+    transition: color 0.3s ease, transform 0.3s ease;
+    z-index: 1002;
+}
+
+.lightbox-close:hover {
+    color: var(--color-text-primary);
+    transform: rotate(90deg);
+}
+
+.lightbox-container {
+    width: 100%;
+    max-width: 1100px;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 5.5fr 6.5fr;
+    gap: 80px;
+    align-items: center;
+    z-index: 1001;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.lightbox.active .lightbox-container {
+    transform: scale(1) translateY(0);
+}
+
+/* 3D Frame Left Column */
+.lightbox-visual {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.lightbox-frame {
+    width: 100%;
+    max-width: 420px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.lightbox-frame .artwork-container {
+    width: 320px;
+    height: 320px;
+    position: relative;
+    overflow: hidden;
+}
+
+#lightbox-img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    margin: 0;
+    border-radius: 0;
+}
+
+.lightbox-frame .mat-border {
+    padding: 24px;
+}
+
+/* Museum Plaque Label Right Column */
+.lightbox-info {
+    width: 100%;
+}
+
+.plaque-detail {
+    background: #f7f6f1; /* Ivory canvas color for classical gallery label */
+    border: 1px solid #d4d0c5;
+    box-shadow: 
+        0 15px 40px rgba(0,0,0,0.5),
+        inset 0 1px 0 #ffffff;
+    padding: 50px;
+    color: #171614; /* Off-black for traditional look */
+    position: relative;
+    border-radius: 1px;
+}
+
+.plaque-label {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #8c887d;
+    letter-spacing: 0.18em;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.plaque-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #0b0a09;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 5px;
+}
+
+.plaque-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #768340; /* Secondary Old Moss Green! */
+    letter-spacing: 0.08em;
+    margin-bottom: 25px;
+}
+
+.plaque-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #e5e2d9;
+    margin-bottom: 25px;
+}
+
+.plaque-academic-analysis {
+    margin-bottom: 30px;
+}
+
+.plaque-academic-analysis h4 {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #383632;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.plaque-academic-analysis p {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #3a3834;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.plaque-technical-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid #e5e2d9;
+    padding-top: 25px;
+}
+
+.tech-spec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.spec-label {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #8c887d;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.spec-val {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #171614;
+}
+
+@media (max-width: 992px) {
+    .lightbox-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-top: 40px;
+        overflow-y: auto;
+        max-height: 90vh;
+    }
+    .lightbox-frame {
+        max-width: 320px;
+    }
+    .lightbox-frame .artwork-container {
+        width: 220px;
+        height: 220px;
+    }
+    .plaque-detail {
+        padding: 30px;
+    }
+    .plaque-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .lightbox-close {
+        top: 20px;
+        right: 20px;
+    }
+    .lightbox-container {
+        padding: 0 20px;
+    }
+    .lightbox-frame {
+        max-width: 260px;
+    }
+    .lightbox-frame .artwork-container {
+        width: 180px;
+        height: 180px;
+    }
+}

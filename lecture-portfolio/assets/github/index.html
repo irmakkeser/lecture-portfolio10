@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irmak — Digital Design Lecture Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="A curated digital design portfolio and academic gallery showcasing structural compositions, logo studies, and digital design lecture resources by Irmak.">
+    <meta name="keywords" content="Digital Design, Graphic Design, Branding, Logo Study, Portfolio, Typography, Vector Design">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Ambient Grid & Grain Overlay for Premium Texture -->
+    <div class="ambient-grain"></div>
+    <div class="ambient-glow"></div>
+    <div class="ambient-grid"></div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-dot" id="cursor-dot"></div>
+
+    <!-- Pinned Header / Navigation -->
+    <header class="site-header" id="site-header">
+        <div class="header-container">
+            <a href="#" class="site-logo" id="logo-btn">
+                <span class="logo-main">IRMAK</span>
+                <span class="logo-sub">DIGITAL DESIGN</span>
+            </a>
+            <nav class="site-nav">
+                <ul class="nav-list">
+                    <li><a href="#exhibition" class="nav-link">Exhibition</a></li>
+                    <li><a href="#lectures" class="nav-link">Lectures</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" id="mobile-nav">
+        <ul class="mobile-nav-list">
+            <li><a href="#exhibition" class="mobile-link">Exhibition</a></li>
+            <li><a href="#lectures" class="mobile-link">Lectures</a></li>
+            <li><a href="#about" class="mobile-link">About</a></li>
+            <li><a href="#contact" class="mobile-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <p class="hero-subtitle">CURATED ACADEMIC ARCHIVE</p>
+                    <h1 class="hero-title">Studies in <br><span class="accent-text">Visual Form</span></h1>
+                    <div class="hero-description-container">
+                        <p class="hero-description">
+                            Welcome to the digital archive of the <strong>Digital Design</strong> lecture series. 
+                            This space showcases five core structural logo studies exploring geometric balance, typographic synthesis, 
+                            and vector chromatic harmonies. 
+                        </p>
+                        <div class="hero-scroll-prompt">
+                            <a href="#exhibition" class="scroll-link">
+                                <span class="scroll-text">Enter Exhibition</span>
+                                <span class="scroll-arrow">↓</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exhibition Section -->
+        <section class="exhibition-section" id="exhibition">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">01 /</span>
+                    <h2 class="section-title">The Gallery Exhibition</h2>
+                    <p class="section-tagline">Click any artwork to open the detailed design analysis plaque.</p>
+                </div>
+
+                <!-- 5-Piece Asymmetric Premium Art Grid -->
+                <div class="gallery-grid">
+                    
+                    <!-- Item 1: Target Logo -->
+                    <div class="gallery-item-wrapper" data-id="target">
+                        <div class="gallery-item tilt-card">
+                            <div class="wood-frame">
+                                <div class="mat-border">
+                                    <div class="inner-bevel">
+                                        <div class="artwork-container">
+                                            <img src="assets/images/target.png" alt="Target Logo Study" class="gallery-image">
+                                            <div class="specular-glare"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="brass-plaque">
+                                <div class="plaque-screw plaque-screw-left"></div>
+                                <div class="plaque-content">
+                                    <h3>PLATE I. THE TARGET DYNAMICS</h3>
+                                    <p>Vector Geometry and Concentric Balance</p>
+                                </div>
+                                <div class="plaque-screw plaque-screw-right"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Dropbox Logo -->
+                    <div class="gallery-item-wrapper" data-id="dropbox">
+                        <div class="gallery-item tilt-card">
+                            <div class="wood-frame">
+                                <div class="mat-border">
+                                    <div class="inner-bevel">
+                                        <div class="artwork-container">
+                                            <img src="assets/images/dropbox.png" alt="Dropbox Logo Study" class="gallery-image">
+                                            <div class="specular-glare"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="brass-plaque">
+                                <div class="plaque-screw plaque-screw-left"></div>
+                                <div class="plaque-content">
+                                    <h3>PLATE II. THE DIGITAL PORTAL</h3>
+                                    <p>Isometric Projection and Gradient Synthesis</p>
+                                </div>
+                                <div class="plaque-screw plaque-screw-right"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Starbucks Logo -->
+                    <div class="gallery-item-wrapper" data-id="starbucks">
+                        <div class="gallery-item tilt-card">
+                            <div class="wood-frame">
+                                <div class="mat-border">
+                                    <div class="inner-bevel">
+                                        <div class="artwork-container">
+                                            <img src="assets/images/starbucks.png" alt="Starbucks Logo Study" class="gallery-image">
+                                            <div class="specular-glare"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="brass-plaque">
+                                <div class="plaque-screw plaque-screw-left"></div>
+                                <div class="plaque-content">
+                                    <h3>PLATE III. THE SIREN'S CHRONICLE</h3>
+                                    <p>Circular Composition and Typographic Arc</p>
+                                </div>
+                                <div class="plaque-screw plaque-screw-right"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Apple Logo -->
+                    <div class="gallery-item-wrapper" data-id="apple">
+                        <div class="gallery-item tilt-card">
+                            <div class="wood-frame">
+                                <div class="mat-border">
+                                    <div class="inner-bevel">
+                                        <div class="artwork-container">
+                                            <img src="assets/images/apple.png" alt="Apple Logo Study" class="gallery-image">
+                                            <div class="specular-glare"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="brass-plaque">
+                                <div class="plaque-screw plaque-screw-left"></div>
+                                <div class="plaque-content">
+                                    <h3>PLATE IV. DUALITY OF THE APPLE</h3>
+                                    <p>Organic Symmetries and Chromatic Study</p>
+                                </div>
+                                <div class="plaque-screw plaque-screw-right"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5: ABBA Logo -->
+                    <div class="gallery-item-wrapper" data-id="abba">
+                        <div class="gallery-item tilt-card">
+                            <div class="wood-frame">
+                                <div class="mat-border">
+                                    <div class="inner-bevel">
+                                        <div class="artwork-container">
+                                            <img src="assets/images/abba.png" alt="ABBA Logo Study" class="gallery-image">
+                                            <div class="specular-glare"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="brass-plaque">
+                                <div class="plaque-screw plaque-screw-left"></div>
+                                <div class="plaque-content">
+                                    <h3>PLATE V. STELLAR SYNCOPATION</h3>
+                                    <p>Reversed Symmetries and Cosmic Glyphs</p>
+                                </div>
+                                <div class="plaque-screw plaque-screw-right"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Lectures Section -->
+        <section class="lectures-section" id="lectures">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">02 /</span>
+                    <h2 class="section-title">Digital Design Lecture</h2>
+                    <p class="section-tagline">Curricular themes, learning modules, and academic resources.</p>
+                </div>
+
+                <div class="lectures-grid">
+                    
+                    <!-- Card 1: Vector Form -->
+                    <div class="lecture-card">
+                        <div class="card-inner">
+                            <div class="card-glow"></div>
+                            <span class="lecture-num">MODULE 01</span>
+                            <h3>Vector Mechanics & Balance</h3>
+                            <p class="lecture-desc">
+                                Exploring the pure geometry of visual anchors. Focuses on Bézier curve mathematics, concentric anchors, and symmetric balance. Analysed via *Plate I (Target Dynamics)*.
+                            </p>
+                            <ul class="lecture-syllabus">
+                                <li>Concentric visual weights</li>
+                                <li>Bézier handle optimization</li>
+                                <li>Geometric focus structures</li>
+                            </ul>
+                            <div class="lecture-footer">
+                                <span class="read-time">Lecture Slide PPTX</span>
+                                <a href="#" class="download-btn" onclick="event.preventDefault(); alert('This is a premium template placeholder. You can edit this link to point to your Lecture 1 slides!');">
+                                    <span>Download</span> <i class="download-icon">↓</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Isometric Projection -->
+                    <div class="lecture-card">
+                        <div class="card-inner">
+                            <div class="card-glow"></div>
+                            <span class="lecture-num">MODULE 02</span>
+                            <h3>Isometric Spatial Theory</h3>
+                            <p class="lecture-desc">
+                                Translating 2D interfaces into 3D environments. This module examines vector-based isometric projection, isometric grids, and gradient ambient occlusion. Analysed via *Plate II (Digital Portal)*.
+                            </p>
+                            <ul class="lecture-syllabus">
+                                <li>30-degree projection planes</li>
+                                <li>Axonometric depth illusions</li>
+                                <li>Synthesized linear gradients</li>
+                            </ul>
+                            <div class="lecture-footer">
+                                <span class="read-time">Syllabus PDF</span>
+                                <a href="#" class="download-btn" onclick="event.preventDefault(); alert('This is a premium template placeholder. You can edit this link to point to your Course Syllabus!');">
+                                    <span>Download</span> <i class="download-icon">↓</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Typographic Synthesis -->
+                    <div class="lecture-card">
+                        <div class="card-inner">
+                            <div class="card-glow"></div>
+                            <span class="lecture-num">MODULE 03</span>
+                            <h3>Typographic Architecture</h3>
+                            <p class="lecture-desc">
+                                Merging icons with letterforms. Discusses path clipping, circular text alignments, glyph modification, and the semiotics of identity systems. Analysed via *Plate III & IV (Siren's Chronicle & Apple)*.
+                            </p>
+                            <ul class="lecture-syllabus">
+                                <li>Text-on-path geometry</li>
+                                <li>Ligature and kerning theory</li>
+                                <li>Symmetry and shape intersection</li>
+                            </ul>
+                            <div class="lecture-footer">
+                                <span class="read-time">Reading List TXT</span>
+                                <a href="#" class="download-btn" onclick="event.preventDefault(); alert('This is a premium template placeholder. You can edit this link to point to your course Reading List!');">
+                                    <span>Download</span> <i class="download-icon">↓</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="section-container">
+                <div class="about-grid">
+                    
+                    <!-- Portrait Frame Column -->
+                    <div class="about-visual">
+                        <div class="wood-frame portrait-frame">
+                            <div class="mat-border">
+                                <div class="inner-bevel">
+                                    <div class="portrait-container">
+                                        <!-- Styled Graphic Placeholder representing a portrait of Irmak -->
+                                        <div class="avatar-graphic">
+                                            <div class="avatar-circle outer"></div>
+                                            <div class="avatar-circle inner"></div>
+                                            <div class="avatar-initials">I</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Bio Column -->
+                    <div class="about-details">
+                        <span class="section-number">03 /</span>
+                        <h2 class="section-title">Student Profile</h2>
+                        <h3 class="about-name">Irmak Keser</h3>
+                        <p class="about-title">New Media Student</p>
+                        
+                        <div class="about-bio">
+                            <p>
+                                Hi, my name is Irmak Keser. I am a New Media student. This is my portfolio that includes my works for my digital design lecture.
+                            </p>
+                        </div>
+
+                        <!-- Credentials Accordion / List -->
+                        <div class="credentials-box">
+                            <div class="credential-item">
+                                <span class="cred-year">LECTURE</span>
+                                <span class="cred-text">Digital Design 101: Fundamentals of Vector Geometry</span>
+                            </div>
+                            <div class="credential-item">
+                                <span class="cred-year">OFFICE</span>
+                                <span class="cred-text">Fine Arts Faculty, Studio 402</span>
+                            </div>
+                            <div class="credential-item">
+                                <span class="cred-year">RESEARCH</span>
+                                <span class="cred-text">Typographic semiotics & isometric spatial design models</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="section-container">
+                <div class="contact-layout">
+                    
+                    <div class="contact-info">
+                        <span class="section-number">04 /</span>
+                        <h2 class="section-title">Lecture Contact</h2>
+                        <p class="contact-subtitle">Get in touch regarding lecture notes, grades, or design feedback.</p>
+                        
+                        <div class="contact-channels">
+                            <div class="channel">
+                                <span class="channel-label">EMAIL ADDRESS</span>
+                                <a href="mailto:irmak@university.edu" class="channel-value">irmak@university.edu</a>
+                            </div>
+                            <div class="channel">
+                                <span class="channel-label">LECTURE HOURS</span>
+                                <span class="channel-value">Tuesdays & Thursdays, 14:00 - 17:00</span>
+                            </div>
+                            <div class="channel">
+                                <span class="channel-label">UNIVERSITY PORTAL</span>
+                                <a href="#" class="channel-value" onclick="event.preventDefault(); alert('Placeholder: Link to your University LMS Portal.');">lms.university.edu/course/digital-design</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <!-- Fully functional aesthetic custom form styled beautifully -->
+                        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message successfully sent! (Mock implementation)'); this.reset();">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Your Name</label>
+                                    <input type="text" id="name" required placeholder="e.g. Student Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="student-id">Student ID (Optional)</label>
+                                    <input type="text" id="student-id" placeholder="e.g. 20261023">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                    <input type="email" id="email" required placeholder="e.g. name@student.edu">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <select id="subject">
+                                    <option value="general">General Lecture Inquiry</option>
+                                    <option value="project">Exhibition Revision Submission</option>
+                                    <option value="syllabus">Syllabus & Grading Question</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" rows="5" required placeholder="How can I assist you in your digital design studies?"></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <span>Transmit Inquiry</span>
+                                <span class="btn-arrow">→</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p class="copyright">&copy; 2026 Irmak. All rights reserved. Made for the Digital Design Lecture Series.</p>
+            <div class="footer-meta">
+                <span>Vampire Black & Old Moss Green Gallery Theme</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" id="lightbox-close">✕</div>
+        <div class="lightbox-container">
+            
+            <!-- Left Side: Interactive 3D Oak Frame -->
+            <div class="lightbox-visual">
+                <div class="wood-frame lightbox-frame" id="lightbox-frame-el">
+                    <div class="mat-border">
+                        <div class="inner-bevel">
+                            <div class="artwork-container">
+                                <img src="" alt="Zoomed Artwork" id="lightbox-img">
+                                <div class="specular-glare"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Luxury Gallery Label (Academic Annotation) -->
+            <div class="lightbox-info">
+                <div class="plaque-detail">
+                    <span class="plaque-label">MUSEUM CATALOG ACADEMIC NOTE</span>
+                    <h2 class="plaque-title" id="lightbox-title">PLATE TITLE</h2>
+                    <p class="plaque-subtitle" id="lightbox-subtitle">PLATE SUBTITLE</p>
+                    
+                    <div class="plaque-divider"></div>
+                    
+                    <div class="plaque-academic-analysis">
+                        <h4>Academic Concept & Visual Semiotics</h4>
+                        <p id="lightbox-analysis">
+                            Loading visual analysis description...
+                        </p>
+                    </div>
+
+                    <div class="plaque-technical-details">
+                        <div class="tech-spec">
+                            <span class="spec-label">MEDIUM</span>
+                            <span class="spec-val" id="lightbox-medium">Vector Graphics / High Contrast Study</span>
+                        </div>
+                        <div class="tech-spec">
+                            <span class="spec-label">DIMENSIONS</span>
+                            <span class="spec-val">Adaptive Viewport Vector</span>
+                        </div>
+                        <div class="tech-spec">
+                            <span class="spec-label">LECTURE MODULE</span>
+                            <span class="spec-val" id="lightbox-module">Module Reference</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Core Script -->
+    <script src="script.js"></script>
+</body>
+</html>
