@@ -251,4 +251,17 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxFrameEl.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
     });
 
+    /* --------------------------------------------------------------------------
+       07. Hero Slideshow Animation
+       -------------------------------------------------------------------------- */
+    const slideshowImages = document.querySelectorAll('.slideshow-image');
+    if (slideshowImages.length > 0) {
+        let currentSlideIndex = 0;
+        setInterval(() => {
+            slideshowImages[currentSlideIndex].classList.remove('active');
+            currentSlideIndex = (currentSlideIndex + 1) % slideshowImages.length;
+            slideshowImages[currentSlideIndex].classList.add('active');
+        }, 3000);
+    }
+
 });
